@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Long Pham RC Workshop - Premium Showroom</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600&family=Playfair+Display:ital,wght=0,400;0,600;1,400&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0b0b0c;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            width: 100%;
+            padding: 20px 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: rgba(11, 11, 12, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .menu-toggle:hover {
+            color: #c5a880;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .logo span {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            display: block;
+            color: #8e8e93;
+        }
+
+        .header-spacer {
+            width: 30px;
+        }
+
+        /* --- DẢI THƯƠNG HIỆU TRUNG TÂM (BRAND BAR) --- */
+        .brand-bar-container {
+            width: 100%;
+            background-color: #0e0e10;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 15px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .brand-marquee {
+            display: flex;
+            white-space: nowrap;
+            gap: 50px;
+            animation: marquee 35s linear infinite;
+            width: max-content;
+        }
+
+        .brand-section {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .brand-item {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #48484a;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .brand-item.real-car {
+            color: #636366;
+            font-weight: 600;
+        }
+
+        .brand-item:hover {
+            color: #c5a880;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* --- SIDEBAR MENU (MENU TRƯỢT 3 GẠCH) --- */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 320px;
+            height: 100%;
+            background-color: #0e0e10;
+            z-index: 1000;
+            transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+            padding: 40px 30px;
+            overflow-y: auto;
+            border-right: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-close {
+            background: none;
+            border: none;
+            color: #8e8e93;
+            font-size: 1.2rem;
+            cursor: pointer;
+            float: right;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-close:hover {
+            color: #ffffff;
+        }
+
+        .menu-section {
+            margin-bottom: 35px;
+            clear: both;
+        }
+
+        .menu-section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #c5a880;
+            margin-bottom: 15px;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(197, 168, 128, 0.2);
+            padding-bottom: 5px;
+        }
+
+        .menu-list {
+            list-style: none;
+        }
+
+        .menu-list li {
+            margin-bottom: 12px;
+        }
+
+        .menu-list a {
+            color: #aeaeaf;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s, padding-left 0.2s;
+            display: block;
+        }
+
+        .menu-list a:hover {
+            color: #ffffff;
+            padding-left: 5px;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+            display: none;
+            backdrop-filter: blur(4px);
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* --- HERO SECTION & VIDEO AREA --- */
+        .hero {
+            padding: 80px 4% 40px 4%;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: #8e8e93;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 80px auto;
+            aspect-ratio: 16 / 9;
+            background-color: #121214;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- SHOWROOM GRID --- */
+        .showroom-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .showroom {
+            padding: 0 4% 120px 4%;
+            max-width: 1450px;
+            margin: 0 auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: #121214;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 280px;
+            background-color: #1a1a1c;
+            overflow: hidden;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .product-card:hover .image-placeholder {
+            transform: scale(1.03);
+        }
+
+        .product-info {
+            padding: 30px;
+        }
+
+        .product-brand-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #c5a880;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .product-specs {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .product-specs li {
+            font-size: 0.85rem;
+            color: #8e8e93;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+            padding-bottom: 6px;
+        }
+
+        .product-specs li span:last-child {
+            color: #ffffff;
+        }
+
+        .price-box {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .price-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #636366;
+            margin-bottom: 5px;
+        }
+
+        .price-value {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: -1px;
+        }
+
+        .currency {
+            font-size: 1.1rem;
+            vertical-align: super;
+            color: #aeaeaf;
+            margin-left: 2px;
+        }
+
+        /* NÚT TÌM HIỂU THÊM TRỰC QUAN */
+        .btn-action {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: center;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover .btn-action {
+            background-color: #ffffff;
+            color: #0b0b0c;
+            border-color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR MENU TRƯỢT 3 GẠCH -->
+    <div class="sidebar-overlay" id="menuOverlay"></div>
+    <div class="sidebar" id="menuSidebar">
+        <button class="sidebar-close" id="closeMenu">✕ CLOSE</button>
+        
+        <!-- MỤC 1: DÒNG XE -->
+        <div class="menu-section">
+            <div class="menu-section-title">Dòng Xe RC 1/14</div>
+            <ul class="menu-list">
+                <li><a href="#showroom">Máy Xúc Thủy Lực (Excavator)</a></li>
+                <li><a href="#showroom">Xe Ben & Đầu Kéo (Dump Truck)</a></li>
+                <li><a href="#showroom">Máy Ủi & Máy Xúc Lật (Loader)</a></li>
+                <li><a href="#showroom">Phiên Bản RTR (Sẵn Sàng Chạy)</a></li>
+                <li><a href="#showroom">Phiên Bản Bản Kit (Tự Lắp Ráp)</a></li>
+            </ul>
+        </div>
+
+        <!-- MỤC 2: PHỤ TÙNG & KHUNG GẦM -->
+        <div class="menu-section">
+            <div class="menu-section-title">Khung Gầm & Phụ Tùng</div>
+            <ul class="menu-list">
+                <li><a href="#showroom">Khung Gầm & Chassis (Chưa RTR)</a></li>
+                <li><a href="#showroom">Hệ Thống Thủy Lực (Bơm, Van, Ty)</a></li>
+                <li><a href="#showroom">Hệ Thống Điện (ESC, Servo, RX/TX)</a></li>
+                <li><a href="#showroom">Âm Thanh, Đèn & Khói Giả Lập</a></li>
+                <li><a href="#showroom">Xích Sắt, Lốp Xe & Phụ Kiện Độ</a></li>
+            </ul>
+        </div>
+
+        <!-- MỤC 3: PHÂN LOẠI HÃNG RC -->
+        <div class="menu-section">
+            <div class="menu-section-title">Bộ Lọc Theo Hãng RC</div>
+            <ul class="menu-list">
+                <li><a href="#showroom">LESU Model</a></li>
+                <li><a href="#showroom">Scaleclub</a></li>
+                <li><a href="#showroom">JD Model</a></li>
+                <li><a href="#showroom">Kabolite</a></li>
+                <li><a href="#showroom">JX Model</a></li>
+                <li><a href="#showroom">Double E Hobby</a></li>
+                <li><a href="#showroom">Mabe Modo</a></li>
+                <li><a href="#showroom">Like RC</a></li>
+                <li><a href="#showroom">LXY Model</a></li>
+                <li><a href="#showroom">Huina (Phổ thông Cao cấp)</a></li>
+                <li><a href="#showroom">Yigong (Phổ thông)</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header>
+        <button class="menu-toggle" id="openMenu">☰</button>
+        <div class="logo">
+            LONG PHAM
+            <span>RC WORKSHOP</span>
+        </div>
+        <div class="header-spacer"></div>
+    </header>
+
+    <!-- DẢI THƯƠNG HIỆU CHẠY NGANG TRUNG TÂM -->
+    <div class="brand-bar-container">
+        <div class="brand-marquee">
+            <div class="brand-section">
+                <span class="brand-item real-car">LIEBHERR</span>
+                <span class="brand-item real-car">MERCEDES-BENZ</span>
+                <span class="brand-item real-car">VOLVO</span>
+                <span class="brand-item real-car">SCANIA</span>
+                <span class="brand-item real-car">MAN</span>
+                <span class="brand-item real-car">IVECO</span>
+                <span class="brand-item">LESU</span>
+                <span class="brand-item">SCALECLUB</span>
+                <span class="brand-item">JD MODEL</span>
+                <span class="brand-item">KABOLITE</span>
+                <span class="brand-item">JX MODEL</span>
+                <span class="brand-item">DOUBLE E</span>
+                <span class="brand-item">MABE MODO</span>
+                <span class="brand-item">LIKE RC</span>
+                <span class="brand-item">LXY MODEL</span>
+                <span class="brand-item">HUINA</span>
+                <span class="brand-item">YIGONG</span>
+            </div>
+            <div class="brand-section">
+                <span class="brand-item real-car">LIEBHERR</span>
+                <span class="brand-item real-car">MERCEDES-BENZ</span>
+                <span class="brand-item real-car">VOLVO</span>
+                <span class="brand-item real-car">SCANIA</span>
+                <span class="brand-item real-car">MAN</span>
+                <span class="brand-item real-car">IVECO</span>
+                <span class="brand-item">LESU</span>
+                <span class="brand-item">SCALECLUB</span>
+                <span class="brand-item">JD MODEL</span>
+                <span class="brand-item">KABOLITE</span>
+                <span class="brand-item">JX MODEL</span>
+                <span class="brand-item">DOUBLE E</span>
+                <span class="brand-item">MABE MODO</span>
+                <span class="brand-item">LIKE RC</span>
+                <span class="brand-item">LXY MODEL</span>
+                <span class="brand-item">HUINA</span>
+                <span class="brand-item">YIGONG</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN INTERACTIVE SECTION -->
+    <section class="hero">
+        <h1>Tuyệt Tác Cơ Khí Thu Nhỏ</h1>
+        <p>Không gian trưng bày, trải nghiệm và cung cấp linh kiện phụ tùng cho các dòng RC công trình thủy lực 1/14 cao cấp hàng đầu.</p>
+        
+        <div class="video-container">
+            <!-- Thay mã ID video YouTube của ông vào chỗ dQw4w9WgXcQ -->
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&mute=1" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <h2 class="showroom-title" id="showroom">The Elite Showroom</h2>
+
+    <main class="showroom">
+        <div class="product-grid">
+
+            <!-- SẢN PHẨM SỐ 1 -->
+            <div class="product-card" onclick="openAffiliate('https://s.click.aliexpress.com/e/_xxxxx1')">
+                <div class="image-container">
+                    <div class="image-placeholder" style="background-image: url('https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?q=80&w=600');"></div>
+                </div>
+                <div class="product-info">
+                    <div class="product-brand-tag">Kabolite / Bản RTR Cao Cấp</div>
+                    <h3 class="product-title">Kabolite K970 Hydraulic Excavator</h3>
+                    <ul class="product-specs">
+                        <li><span>Hãng sản xuất</span><span>Kabolite</span></li>
+                        <li><span>Trạng thái</span><span>RTR (Sẵn sàng chạy)</span></li>
+                        <li><span>Hệ thống</span><span>Full Thủy lực 100%</span></li>
+                    </ul>
+                    <div class="price-box">
+                        <div class="price-label">Giá Tham Khảo Tại AliExpress</div>
+                        <div class="price-value" id="price1" data-target-price="185000000">0</div>
+                    </div>
+                    <div class="btn-action">Tìm Hiểu Thêm & Mua Tại AliExpress</div>
+                </div>
+            </div>
+
+            <!-- SẢN PHẨM SỐ 2 -->
+            <div class="product-card" onclick="openAffiliate('https://s.click.aliexpress.com/e/_xxxxx2')">
+                <div class="image-container">
+                    <div class="image-placeholder" style="background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=600');"></div>
+                </div>
+                <div class="product-info">
+                    <div class="product-brand-tag">LESU / Khung Gầm & Chassis</div>
+                    <h3 class="product-title">LESU 8x8 Heavy-Duty Chassis Metal Kit</h3>
+                    <ul class="product-specs">
+                        <li><span>Hãng sản xuất</span><span>LESU Model</span></li>
+                        <li><span>Trạng thái</span><span>Bản Kit (Chưa ráp)</span></li>
+                        <li><span>Cấu hình</span><span>Cầu giảm tốc, Khóa vi sai</span></li>
+                    </ul>
+                    <div class="price-box">
+                        <div class="price-label">Giá Tham Khảo Tại AliExpress</div>
+                        <div class="price-value" id="price2" data-target-price="54000000">0</div>
+                    </div>
+                    <div class="btn-action">Tìm Hiểu Thêm & Mua Tại AliExpress</div>
+                </div>
+            </div>
+
+            <!-- SẢN PHẨM SỐ 3 -->
+            <div class="product-card" onclick="openAffiliate('https://s.click.aliexpress.com/e/_xxxxx3')">
+                <div class="image-container">
+                    <div class="image-placeholder" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600');"></div>
+                </div>
+                <div class="product-info">
+                    <div class="product-brand-tag">Scaleclub / Phụ Tùng Thủy Lực</div>
+                    <h3 class="product-title">Scaleclub High-Pressure Hydraulic Pump V2</h3>
+                    <ul class="product-specs">
+                        <li><span>Hãng linh kiện</span><span>Scaleclub</span></li>
+                        <li><span>Phân loại</span><span>Bơm thủy lực áp suất cao</span></li>
+                        <li><span>Tương thích</span><span>Xe ben, xe cẩu 1/14</span></li>
+                    </ul>
+                    <div class="price-box">
+                        <div class="price-label">Giá Tham Khảo Tại AliExpress</div>
+                        <div class="price-value" id="price3" data-target-price="8500000">0</div>
+                    </div>
+                    <div class="btn-action">Tìm Hiểu Thêm & Mua Tại AliExpress</div>
+                </div>
+            </div>
+
+            <!-- SẢN PHẨM SỐ 4 -->
+            <div class="product-card" onclick="openAffiliate('https://s.click.aliexpress.com/e/_xxxxx4')">
+                <div class="image-container">
+                    <div class="image-placeholder" style="background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=600');"></div>
+                </div>
+                <div class="product-info">
+                    <div class="product-brand-tag">Huina / Phổ Thông Cao Cấp</div>
+                    <h3 class="product-title">Huina 1593 Upgrade Alloy Excavator</h3>
+                    <ul class="product-specs">
+                        <li><span>Hãng sản xuất</span><span>Huina</span></li>
+                        <li><span>Trạng thái</span><span>RTR (Có pin sạc sẵn)</span></li>
+                        <li><span>Hệ thống</span><span>Truyền động trục vít cải tiến</span></li>
+                    </ul>
+                    <div class="price-box">
+                        <div class="price-label">Giá Tham Khảo Tại AliExpress</div>
+                        <div class="price-value" id="price4" data-target-price="3650000">0</div>
+                    </div>
+                    <div class="btn-action">Tìm Hiểu Thêm & Mua Tại AliExpress</div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- SCRIPT ĐIỀU KHIỂN HOẠT ĐỘNG TOÀN TRANG -->
+    <script>
+        function openAffiliate(url) {
+            window.open(url, '_blank');
+        }
+
+        const sidebar = document.getElementById('menuSidebar');
+        const overlay = document.getElementById('menuOverlay');
+        
+        document.getElementById('openMenu').addEventListener('click', () => {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        const closeMenuFunc = () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        };
+
+        document.getElementById('closeMenu').addEventListener('click', closeMenuFunc);
+        overlay.addEventListener('click', closeMenuFunc);
+
+        document.querySelectorAll('.menu-list a').forEach(link => {
+            link.addEventListener('click', closeMenuFunc);
+        });
+
+        function animatePrice(elementId) {
+            const el = document.getElementById(elementId);
+            if(!el) return;
+            const target = parseInt(el.getAttribute('data-target-price'), 10);
+            const duration = 2000; 
+            const startTime = performance.now();
+
+            function updateNumber(currentTime) {
+                const elapsedTime = currentTime - startTime;
+                if (elapsedTime < duration) {
+                    const progress = elapsedTime / duration;
+                    const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+                    const currentPrice = Math.floor(easeOutProgress * target);
+                    el.innerHTML = currentPrice.toLocaleString('vi-VN') + '<span class="currency">₫</span>';
+                    requestAnimationFrame(updateNumber);
+                } else {
+                    el.innerHTML = target.toLocaleString('vi-VN') + '<span class="currency">₫</span>';
+                }
+            }
+            requestAnimationFrame(updateNumber);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                animatePrice('price1');
+                animatePrice('price2');
+                animatePrice('price3');
+                animatePrice('price4');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
